@@ -1,4 +1,5 @@
 const readline = require('readline');
+const { menuAdmin } = require("./admin");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -12,48 +13,13 @@ function seleccionarRol() {
     console.log("1. Administrador");
     console.log("2. Usuario");
 
-    rl.question("> ", (respuesta) => {
-        const opcion = respuesta.trim();
-
-        switch (opcion) {
-            case "1":
-                console.log("Has ingresado como ADMINISTRADOR");
-                menuAdmin();
-                break;
-
-            case "2":
-                console.log("Has ingresado como USUARIO");
-                menuUsuario();
-                break;
-
-            default:
-                console.log("Opción no válida. Intenta nuevamente.");
-                seleccionarRol(); // bucle lógico
+    rl.question("> ", (opcion) => {
+        if (opcion === "1") {
+            menuAdmin(rl);
+        } else {
+            console.log("Rol usuario en construcción 🚧");
+            seleccionarRol();
         }
-    });
-}
-
-function menuAdmin() { //Menu Admin
-    console.log("\n--- Menú Administrador ---");
-    console.log("1. Crear proyecto");
-    console.log("2. Ver proyectos");
-    console.log("3. Salir");
-
-    rl.question("> ", (opcion) => {
-        console.log("Funcionalidad en construcción 🚧");
-        rl.close();
-    });
-}
-
-function menuUsuario() { // Menu Usuario
-    console.log("\n--- Menú Usuario ---");
-    console.log("1. Ver proyectos asignados");
-    console.log("2. Cambiar estado de tarea");
-    console.log("3. Salir");
-
-    rl.question("> ", (opcion) => {
-        console.log("Funcionalidad en construcción 🚧");
-        rl.close();
     });
 }
 
