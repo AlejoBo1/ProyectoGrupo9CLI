@@ -3,7 +3,7 @@ const { crearProyecto, obtenerProyectos } = require("./proyectos");
 /**
  * Menú del administrador
  */
-function menuAdmin(rl) {
+function menuAdmin(rl, volverAlMenuPrincipal) {
     console.log("\n--- Menú Administrador ---");
     console.log("1. Crear proyecto");
     console.log("2. Listar proyectos");
@@ -12,19 +12,20 @@ function menuAdmin(rl) {
     rl.question("> ", (opcion) => {
         switch (opcion) {
             case "1":
-                crearProyectoCLI(rl);
+                crearProyectoCLI(rl, volverAlMenuPrincipal);
                 break;
 
             case "2":
-                listarProyectosCLI(rl);
+                listarProyectosCLI(rl, volverAlMenuPrincipal);
                 break;
 
             case "0":
-                return;
+                volverAlMenuPrincipal(); 
+                break;
 
             default:
                 console.log("Opción inválida.");
-                menuAdmin(rl);
+                menuAdmin(rl, volverAlMenuPrincipal);
         }
     });
 }
@@ -32,7 +33,7 @@ function menuAdmin(rl) {
 /**
  * Flujo para crear proyecto desde CLI
  */
-function crearProyectoCLI(rl) {
+function crearProyectoCLI(rl,volver) {
     rl.question("Nombre del proyecto: ", (nombre) => {
         rl.question("Clave del proyecto: ", (clave) => {
             rl.question("Descripción: ", (descripcion) => {
@@ -40,7 +41,7 @@ function crearProyectoCLI(rl) {
                 const resultado = crearProyecto(nombre, clave, descripcion);
                 console.log(resultado.mensaje);
 
-                menuAdmin(rl);
+                menuAdmin(rl,volver);
             });
         });
     });
@@ -49,7 +50,7 @@ function crearProyectoCLI(rl) {
 /**
  * Listar proyectos existentes
  */
-function listarProyectosCLI(rl) {
+function listarProyectosCLI(rl,volverAlMenuPrincipal) {
     const proyectos = obtenerProyectos();
 
     console.log("\n📋 Proyectos:");
@@ -61,7 +62,7 @@ function listarProyectosCLI(rl) {
         });
     }
 
-    menuAdmin(rl);
+    menuAdmin(rl, volverAlMenuPrincipal);
 }
 
 module.exports = {

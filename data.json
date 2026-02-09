@@ -4,6 +4,11 @@
       "nombre": "Ale",
       "clave": "Test01",
       "descripcion": "Esto es una prueba "
+    },
+    {
+      "nombre": "Test2",
+      "clave": "HSBT2",
+      "descripcion": "Prueba de Test 02"
     }
   ]
 }

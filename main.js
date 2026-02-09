@@ -1,5 +1,6 @@
 const readline = require('readline');
 const { menuAdmin } = require("./admin");
+const { menuUsuario } = require("./usuario");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -15,9 +16,11 @@ function seleccionarRol() {
 
     rl.question("> ", (opcion) => {
         if (opcion === "1") {
-            menuAdmin(rl);
+            menuAdmin(rl,seleccionarRol);
+        } else if (opcion === "2") {
+            menuUsuario(rl,seleccionarRol);
         } else {
-            console.log("Rol usuario en construcción 🚧");
+            console.log("Opción inválida");
             seleccionarRol();
         }
     });

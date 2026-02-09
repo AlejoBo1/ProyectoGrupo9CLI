@@ -2,8 +2,13 @@ const fs = require("fs");
 const path = "./data.json";
 
 /**
- * Lee los proyectos desde el archivo JSON
+ * Lee los proyectos desde el archivo JSON -- que luego se pasará a una base de datos en SQLlite
  */
+function obtenerProyectos() {
+    const data = JSON.parse(fs.readFileSync(path, "utf-8"));
+    return data.proyectos;
+}
+
 function obtenerProyectos() {
     const data = JSON.parse(fs.readFileSync(path, "utf-8"));
     return data.proyectos;
