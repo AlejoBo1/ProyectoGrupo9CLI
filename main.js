@@ -1,6 +1,3 @@
-console.log("Grupo 9 - Gestor de Proyectos CLI");
-console.log("¿Quieres ingresar como administrador o como usuario? (admin/usuario)");
-
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -8,21 +5,33 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("> ", (respuesta) => { // Crear bucle para validar la entrada del usuario y admin y evitar errrores.
+// Muestra el menú inicial y permite seleccionar el rol, se repite hasta que el usuario ingrese una opción válida.
 
-    const opcion = respuesta.toLowerCase().trim();
+function seleccionarRol() {
+    console.log("\n¿Cómo deseas ingresar?");
+    console.log("1. Administrador");
+    console.log("2. Usuario");
 
-    if (opcion === "admin") {
-        console.log("Has ingresado como ADMINISTRADOR");
-        menuAdmin();
-    } else if (opcion === "usuario") {
-        console.log("Has ingresado como USUARIO");
-        menuUsuario();
-    } else {
-        console.log("Opción no válida. Intenta de nuevo.");
-        rl.close();
-    }
-});
+    rl.question("> ", (respuesta) => {
+        const opcion = respuesta.trim();
+
+        switch (opcion) {
+            case "1":
+                console.log("Has ingresado como ADMINISTRADOR");
+                menuAdmin();
+                break;
+
+            case "2":
+                console.log("Has ingresado como USUARIO");
+                menuUsuario();
+                break;
+
+            default:
+                console.log("Opción no válida. Intenta nuevamente.");
+                seleccionarRol(); // bucle lógico
+        }
+    });
+}
 
 function menuAdmin() { //Menu Admin
     console.log("\n--- Menú Administrador ---");
@@ -47,3 +56,6 @@ function menuUsuario() { // Menu Usuario
         rl.close();
     });
 }
+
+console.log("Grupo 9 - Gestor de Proyectos CLI");
+seleccionarRol();
