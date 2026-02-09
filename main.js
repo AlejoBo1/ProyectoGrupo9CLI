@@ -8,7 +8,8 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("> ", (respuesta) => {
+rl.question("> ", (respuesta) => { // Crear bucle para validar la entrada del usuario y admin y evitar errrores.
+
     const opcion = respuesta.toLowerCase().trim();
 
     if (opcion === "admin") {
@@ -23,7 +24,7 @@ rl.question("> ", (respuesta) => {
     }
 });
 
-function menuAdmin() {
+function menuAdmin() { //Menu Admin
     console.log("\n--- Menú Administrador ---");
     console.log("1. Crear proyecto");
     console.log("2. Ver proyectos");
@@ -35,7 +36,7 @@ function menuAdmin() {
     });
 }
 
-function menuUsuario() {
+function menuUsuario() { // Menu Usuario
     console.log("\n--- Menú Usuario ---");
     console.log("1. Ver proyectos asignados");
     console.log("2. Cambiar estado de tarea");
